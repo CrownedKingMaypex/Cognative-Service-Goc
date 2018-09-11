@@ -1,0 +1,83 @@
+﻿@{
+
+}
+
+<link href="~/Content/css/fontawesome-all.css" rel="stylesheet" />
+<link href="~/Content/css/style.css" rel="stylesheet" />
+
+
+@using GocVisionApi.Models;
+
+<div class=" w3l-login-form">
+    <h2>Upload</h2>
+    
+@using (Html.BeginForm("Upload", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+        <div class=" w3l-form-group">
+            <label>Select Image</label>
+            <div class="group">
+                <i class="fas fa-image"></i>
+                <input type="file" name="file" id="upload" />
+            </div>
+        </div>
+        @*<input type="submit" value="Upload a Photo" />*@
+        <button type="submit">Upload</button>
+}
+  
+</div>
+	<hr />
+
+	<div class="row">
+		<div class="col-sm-12">
+			@foreach (ImageUpload blob in ViewBag.Blobs)
+			{
+				<a href="@blob.ImageUri" rel="lightbox" title="@blob.Caption">
+					<img src="@blob.ThumbnailUri" width="350" height="350" title="@blob.Caption" style="padding-right: 16px; padding-bottom: 16px" />
+				</a>
+			   
+
+			}
+		</div>
+	</div>
+
+
+
+
+
+@section scripts
+{
+	<script type="text/javascript" language="javascript">
+        if ("@TempData["Message"]" !== "") {
+            alert("@TempData["Message"]");
+        }
+	</script>
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
